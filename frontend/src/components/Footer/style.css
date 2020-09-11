@@ -1,0 +1,19 @@
+footer {
+    background-color: #f5f5f5;
+    margin-top: 20px;
+}
+
+.footerRights {
+    font-size: 12px;
+    text-align: center;
+}
+
+.footerInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.typesMenu{
+    list-style: none;
+    font-size: 14px;
+}

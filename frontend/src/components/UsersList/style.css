@@ -1,0 +1,9 @@
+.usersInfo {
+    background-color: burlywood;
+    display: flex;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+}

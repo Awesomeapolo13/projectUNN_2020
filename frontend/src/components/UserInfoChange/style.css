@@ -1,0 +1,8 @@
+.card-avatar img {
+    width: 150px;
+}
+
+.user-card {
+    display: flex;
+    flex-direction: column;
+}

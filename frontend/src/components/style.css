@@ -1,0 +1,34 @@
+/*Общие стили*/
+
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif; /*Шрифт взят с fonts.google.com*/
+}
+
+/*Стили хедера*/
+.header {
+    display: flex;
+    /*height: 66px;*/
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 10vh;
+    flex: 1;
+}
+
+/*Стили элемента About*/
+
+.about-us {
+    margin-top: 33px;
+}
+
+.about-us-img {
+    width: 650px;
+}
