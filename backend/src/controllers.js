@@ -2,10 +2,19 @@
 
 import Boom from '@hapi/boom';
 import uuid from 'uuid';
+
 const uuidv4 = uuid.v4;
 import database from './database/connections.js'
-import { GetUserInfo, GetUsersInfo, getDateFromString, GetPostInfo, GetPostsInfo, GetCommentInfo } from './helpers.js';
-import { generateHash } from './helpers.js';
+import {
+    GetUserInfo,
+    GetUsersInfo,
+    getDateFromString,
+    GetPostInfo,
+    GetPostsInfo,
+    GetCommentInfo,
+    GetCommentsInfo
+} from './helpers.js';
+import {generateHash} from './helpers.js';
 import {mounthArray30, postTypes} from './helpers.js';
 
 
@@ -38,11 +47,11 @@ export default {
             }
 
             // Email
-            const alreadyRegistered = await database.User.findOne({ email: request.payload.email });
+            const alreadyRegistered = await database.User.findOne({email: request.payload.email});
             console.log(alreadyRegistered);
             if (alreadyRegistered !== null) {
-                    return Boom.badRequest('Пользователь с таким логином уже зарегистрирован!');
-                }
+                return Boom.badRequest('Пользователь с таким логином уже зарегистрирован!');
+            }
 
             //Телефон
             if (userData.contactPhone.match(/\d/g).join('').length !== 11) {
@@ -84,10 +93,10 @@ export default {
             return h.response(
                 {
                     token: loginUser.token,
-                    userID:loginUser.userID,
+                    userID: loginUser.userID,
                 }
-                ).code(200);
-         } catch (e) {
+            ).code(200);
+        } catch (e) {
             console.log(e);
             return Boom.badImplementation('Произошла ошибка при авторизации пользователя, попробуйте позднее!');
         }
@@ -96,7 +105,7 @@ export default {
     //Получение информации о пользователе
     getUserInformation: async (request, h) => {
         try {
-            const foundUser = await database.User.findOne({ userID: request.query.userID });
+            const foundUser = await database.User.findOne({userID: request.query.userID});
             console.log(foundUser);
             if (foundUser === null) {
                 return h.response(null);
@@ -152,7 +161,7 @@ export default {
             if (newUserData.contactPhone.match(/\d/g).join('').length !== 11) {
                 return Boom.badRequest('Введите корректный телефон!');
             }
-            const foundUser = await database.User.findOne({ userID: request.payload.userID });
+            const foundUser = await database.User.findOne({userID: request.payload.userID});
             if (foundUser === null) {
                 return Boom.badRequest('Пользователя не существует');
             }
@@ -178,13 +187,13 @@ export default {
     //Удаление пользователя
     deleteUserAccount: async (request, h) => {
         try {
-             const deleteUser = await database.User.findOne({ userID: request.payload.userID});
+            const deleteUser = await database.User.findOne({userID: request.payload.userID});
             console.log(deleteUser);
             if (deleteUser === null) {
                 return Boom.badRequest('Пользователя не существует');
             }
             await deleteUser.deleteOne(deleteUser);
-           return h.response('Данные удалены').code(200);
+            return h.response('Данные удалены').code(200);
         } catch (e) {
             console.log(e);
             return Boom.badImplementation('Произошла ошибка при удалении аккаунта, попробуйте позднее!');
@@ -218,12 +227,15 @@ export default {
                 commentsIDArray: newPostData.commentsIDArray,
                 postID: newPostData.postID,
             });
-                await database.Post.findOne({
+            await database.Post.findOne({
                 userID: newPostData.userID,
                 postID: newPostData.postID
             })
                 .updateOne({postID: newPost._id});
-            return h.response({postID: newPost._id}).code(200);
+            return h.response({
+                postID: newPost._id,
+                message: 'Ваша статья опубликована',
+            }).code(200);
         } catch (e) {
             console.log(e);
             return Boom.badImplementation('Произошла ошибка при создании поста, попробуйте позднее');
@@ -232,7 +244,7 @@ export default {
     //Получение поста
     getPostInformation: async (request, h) => {
         try {
-            const foundPost = await database.Post.findOne({ postID: request.query.postID });
+            const foundPost = await database.Post.findOne({postID: request.query.postID});
             console.log(foundPost);
             if (foundPost === null) {
                 return h.response(null);
@@ -249,7 +261,7 @@ export default {
     getPostsList: async (request, h) => {
         try {
             const foundAllPosts = await database.Post.find();
-            // console.log(foundUserAllUsers);
+            console.log(foundAllPosts);
             const postList = new GetPostsInfo(foundAllPosts);
             return h.response(postList).code(200);
         } catch (e) {
@@ -298,12 +310,9 @@ export default {
                 return Boom.badRequest('Удаление публикации доступно её автору!');
             }
             for (let comment of foundPost.commentsIDArray) {
-                console.log ('try to find the comment')
-                await database.Comment.findOneAndDelete({commentID: comment.commentID}); // надо как то удалить массив комментов
+                let foundComment = await database.Comment.findOne({commentID: comment});
+                await foundComment.deleteOne({commentID: comment});
             }
-            // foundPost.commentsIDArray.map(async (comment) => {
-            //    await database.Comment.findOneAndDelete({commentID: comment.commentID});
-            //     });
             await foundPost.deleteOne(foundPost);
             return h.response('Публикация удалена').code(200);
         } catch (e) {
@@ -339,7 +348,7 @@ export default {
             console.log(foundPost.commentsIDArray);
             const foundNewComment = await database.Comment.findOne({commentID: newComment._id});
             await foundPost // добавляем id  комментария в массив комментариев поста
-                .updateOne({$push: {commentsIDArray:  foundNewComment.commentID}});
+                .updateOne({$push: {commentsIDArray: foundNewComment.commentID}});
             return h.response({commentID: foundNewComment._id}).code(200);
         } catch (e) {
             console.log(e);
@@ -350,7 +359,7 @@ export default {
     //Получение информации о комментарии
     getComment: async (request, h) => {
         try {
-            const foundComment = await database.Post.findOne({ commentID: request.query.commentID });
+            const foundComment = await database.Post.findOne({commentID: request.query.commentID});
             console.log(foundComment);
             if (foundComment === null) {
                 return h.response(null);
@@ -361,6 +370,25 @@ export default {
         } catch (e) {
             console.log(e);
             return Boom.badImplementation('Произошла ошибка при получении информации о публикации, попробуйте позднее!');
+        }
+    },
+
+    //Получение перечьня комментариев к публикации
+    getCommentsList: async (request, h) => {
+        try {
+            const commentsIDArray = request.query['commentsIDArray[]'];
+            console.log(request.query);
+            console.log(commentsIDArray);
+            let commentsDataArr = [];
+            for (let commentID of commentsIDArray) {
+                let foundComment = await database.Comment.findOne({commentID: commentID});
+                commentsDataArr.push(foundComment);
+            }
+            commentsDataArr = new GetCommentsInfo(commentsDataArr);
+            return h.response(commentsDataArr).code(200);
+        } catch (e) {
+            console.log(e);
+            return Boom.badImplementation('Произошла ошибка при получении информации о комментариях к публикации, попробуйте позднее!');
         }
     },
 
@@ -388,7 +416,7 @@ export default {
                 image: changeCommentData.image,
                 video: changeCommentData.video,
             });
-             return h.response('Данные в комментарии изменены').code(200);
+            return h.response('Данные в комментарии изменены').code(200);
         } catch (e) {
             console.log(e)
             return Boom.badImplementation('Произошла ошибка при создании комментария, попробуйте позднее');
@@ -462,7 +490,7 @@ export default {
                 endDate: newContestData.endDate,
                 image: newContestData.image,
                 video: newContestData.video,
-                });
+            });
             console.log(newContest);
             return h.response('Конкурс создан').code(200);
         } catch (e) {

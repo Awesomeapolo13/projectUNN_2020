@@ -54,6 +54,17 @@ export const GetCommentInfo = function (post) {
     this.video = post.video;
 }
 
+//Функция конструктор списка с комментариев к публикации
+export const GetCommentsInfo = function (commentsDataArr) {
+    return commentsDataArr.map(comment => {
+        return {
+            postID: comment.postID,
+            userID: comment.userID,
+            text: comment.text,
+        }
+    })
+}
+
 //Функция конструктор списка пользователей
 export const GetUsersInfo = function (usersDataArr) {
     return usersDataArr.map(user => {

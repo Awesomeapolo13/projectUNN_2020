@@ -17,7 +17,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node --experimental-modules ./src/server.js",
+    "server": "node --experimental-modules ./src/server.js"
   },
   "author": "Aleksei Logachev",
   "license": "ISC",

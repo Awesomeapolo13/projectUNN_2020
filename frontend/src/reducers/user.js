@@ -57,6 +57,7 @@ import {
     POST_TRY_TO_CREATE,
     POST_SUCCESS_CREATE,
     POST_FAIL_CREATE,
+    CREATE_POST_AGAIN,
 
     USER_TRY_TO_REGISTER,
     USER_SUCCESS_REGISTER,
@@ -65,6 +66,10 @@ import {
     USER_TRY_TO_CHANGE_INFO,
     USER_SUCCESS_CHANGE_INFO,
     USER_FAIL_CHANGE_INFO,
+    //Константы комментариев
+    GET_COMMENTS_LOADING,
+    GET_COMMENTS_SUCCESS,
+    GET_COMMENTS_FAIL,
 
 } from '../constants';
 
@@ -75,7 +80,6 @@ const initialState = {
     isLoggedIn: false,
     userRegister: false,
     activePageId: 0,
-    token: '',
     newFormatData: '',
     pages: [
         {pageId: 0, name: 'Главная', path: '/'},
@@ -133,17 +137,37 @@ const initialState = {
     posts: [],
     changePostMessage: '',
     isPostCreating: false,
+    postCreated: false,
     postText: '',
     isPostTextInvalid: false,
     postTitle: '',
     isPostTitleInvalid: false,
     postType: '',
+    postTypes: new Map([
+        ['weather', 'Погода'],
+        ['love', 'Любовь'],
+        ['sadness', 'Грусть'],
+        ['sport', 'Спорт'],
+        ['religion', 'Вера'],
+        ['holiday', 'Праздничные'],
+        ['army', 'Армейские'],
+        ['nature', 'Природа'],
+        ['life', 'Жизнь'],
+        ['folk', 'Народное творчество'],
+        ['baby', 'Детские'],
+        ['other', 'Другое'],
+        ]),
 
     personalInfo: {},
     isUsersLoading: false,
     isPostsLoading: false,
     isRegistrationLoading: false,
     errMsg: '',
+
+    //Комментарии
+    comments: [],
+    isCommentsLoading: false,
+    commentsLoadingMessage: '',
 };
 
 export default function userReducer(state = initialState, action) {
@@ -445,7 +469,7 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 errMsg: action.payload,
                 isRegistered: false,
-            }
+            };
 
 //Вход
 
@@ -587,7 +611,8 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 changePostMessage: action.payload,
-                isPostCreating: false
+                isPostCreating: false,
+                postCreated: true,
             };
 
         case POST_FAIL_CREATE:
@@ -595,6 +620,33 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 changePostMessage: action.payload,
                 isPostCreating: false
+            };
+
+        case CREATE_POST_AGAIN:
+            return {
+                ...state,
+                postCreated: false,
+            };
+
+            //Получение комментариев к публикации
+        case GET_COMMENTS_LOADING:
+            return {
+                ...state,
+                isCommentsLoading: true,
+            };
+
+        case GET_COMMENTS_SUCCESS:
+            return {
+                ...state,
+                comments: action.payload,
+                isCommentsLoading: false,
+            };
+
+        case GET_COMMENTS_FAIL:
+            return {
+                ...state,
+                commentsLoadingMessage: action.payload,
+                isCommentsLoading: false,
             }
 
         default:

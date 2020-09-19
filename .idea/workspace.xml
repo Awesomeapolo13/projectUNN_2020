@@ -13,6 +13,19 @@
     <list default="true" id="16a57ad5-6813-4d74-924c-18be824ada5a" name="Default Changelist" comment="initiation commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/dist/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/dist/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/actions/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/actions/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Post/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Post/Post.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/PostCreator/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/PostCreator/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Posts/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Posts/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Registration/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Registration/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/User.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserCard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserCard/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/constants/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/constants/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/reducers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/reducers/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +88,12 @@
       <workItem from="1599467901103" duration="15554000" />
       <workItem from="1599547442313" duration="19583000" />
       <workItem from="1599628826971" duration="6296000" />
-      <workItem from="1599815199218" duration="4760000" />
+      <workItem from="1599815199218" duration="5412000" />
+      <workItem from="1599932123689" duration="10697000" />
+      <workItem from="1599993502566" duration="18392000" />
+      <workItem from="1600099750551" duration="11703000" />
+      <workItem from="1600187198192" duration="7766000" />
+      <workItem from="1600343288909" duration="1184000" />
     </task>
     <task id="LOCAL-00001" summary="initiation commit">
       <created>1599819727634</created>
@@ -100,6 +118,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initiation commit" />
@@ -110,10 +129,10 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="411" y="115" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1597927407824" />
-    <state x="466" y="297" key="NewPhpFileDialog" timestamp="1597927527989">
+    <state x="466" y="297" key="NewPhpFileDialog" timestamp="1600102890439">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="466" y="297" key="NewPhpFileDialog/0.0.1280.689@0.0.1280.689" timestamp="1597927527989" />
+    <state x="466" y="297" key="NewPhpFileDialog/0.0.1280.689@0.0.1280.689" timestamp="1600102890439" />
     <state x="142" y="0" key="SettingsEditor" timestamp="1597858910346">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -122,9 +141,9 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="284" y="176" key="run.anything.popup/0.0.1280.689@0.0.1280.689" timestamp="1599479529465" />
-    <state x="367" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1598179265449">
+    <state x="367" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1599996686178">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="367" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1598179265449" />
+    <state x="367" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1599996686178" />
   </component>
 </project>

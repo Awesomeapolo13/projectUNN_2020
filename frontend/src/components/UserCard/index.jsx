@@ -26,7 +26,6 @@ function UserCard(props) {
     return (
         <>
             <Card className={'user-card'}>
-                {/*<Card.Img src={props.avatar} className={'avatar'}/>*/}
                 <div className={'card-avatar'}>
                     <img src={props.avatar} alt='user.avatar'/>
                 </div>

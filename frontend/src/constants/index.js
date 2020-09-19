@@ -65,3 +65,8 @@ export const POST_TEXT_INVALID = 'POST_TEXT_INVALID';
 export const POST_TRY_TO_CREATE = 'POST_TRY_TO_CREATE';
 export const POST_SUCCESS_CREATE = 'POST_SUCCESS_CREATE';
 export const POST_FAIL_CREATE = 'POST_FAIL_CREATE';
+export const CREATE_POST_AGAIN = 'CREATE_POST_AGAIN';
+//получение перечьня комментариев к публикации
+export const GET_COMMENTS_LOADING = 'GET_COMMENTS_LOADING';
+export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
+export const GET_COMMENTS_FAIL = 'GET_COMMENTS_FAIL';

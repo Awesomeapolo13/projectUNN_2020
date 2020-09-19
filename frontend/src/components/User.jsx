@@ -46,50 +46,6 @@ function User(props) {
     )
 }
 
-// class User extends React.Component {
-//     constructor(props) {
-//         super(props);
-//     };
-//
-//     // componentDidMount() {
-//     //     this.props.actions.fetchUsers();
-//     // }
-//
-//     render() {
-//         return (
-//             <Router>
-//                 <Switch>
-//                     <Route
-//                         path={'/users/:userId'}
-//                         exact
-//                         render={() => {
-//                             return (
-//                                 <UserCard
-//                                     {...this.props}
-//                                 />
-//                             )
-//                         }}
-//                     />
-//
-//                     <Route
-//                         path={'/users/:userId/change'}
-//                         exact
-//                         render={() => {
-//                             return (
-//                                 <UserInfoChange
-//                                     {...this.props}
-//                                 />
-//                             )
-//                         }}
-//                     />
-//
-//
-//                 </Switch>
-//             </Router>
-//         )
-//     }
-// }
-
 const mapStateToProps = state => ({ ...state.user});
 
 const mapDispatchToProps = dispatch => ({

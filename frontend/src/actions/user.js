@@ -359,7 +359,6 @@ export default {
                         payload: response.data,
                     });
                 } else {
-                    console.log('Не получилось!', response);
                     dispatch({
                         type: constants.USER_FAIL_CHANGE_INFO,
                         payload: response.data,
@@ -490,9 +489,10 @@ export default {
                         type: type,
                         text: text,
                         commentsIDArray: [],
+                        postID: ' ',
                     },
                     {headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}},
-                    );
+                );
                 if (response.status === 200) {
                     dispatch({
                         type: constants.POST_SUCCESS_CREATE,
@@ -511,6 +511,44 @@ export default {
                     payload: e.message,
                 });
             }
+        }
+    },
+
+    //Получение перечня комментариев к публикации
+    fetchComments(commentsIDArray) {
+        return async (dispatch) => {
+            dispatch({
+                type: constants.GET_COMMENTS_LOADING,
+            });
+            try {
+                let arr = [];
+                for (let i = 0; i < commentsIDArray.length; i++) {
+                    arr.push(commentsIDArray[i][0]);
+                }
+                console.log('newArr', arr);
+                console.log('ARRAY', commentsIDArray);
+                const responseComments = await axios.get(
+                    'http://localhost:3000/comments',
+                    {params: {commentsIDArray: arr}}
+                );
+                dispatch({
+                    type: constants.GET_COMMENTS_SUCCESS,
+                    payload: responseComments.data,
+                });
+            } catch (e) {
+                console.log(e);
+                dispatch({
+                    type: constants.GET_COMMENTS_FAIL,
+                    payload: e.message,
+                })
+            }
+
+        };
+    },
+
+    createPostAgain() {
+        return {
+            type: constants.CREATE_POST_AGAIN
         }
     }
 

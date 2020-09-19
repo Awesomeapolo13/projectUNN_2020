@@ -23,17 +23,9 @@
     list-style: none;
 }
 
-.menu span {
-
-}
-
 .exit {
     /*display: flex;*/
     width: min-content;
     justify-content: space-between;
     align-items: center;
-}
-
-.exit button {
-
 }
