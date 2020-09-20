@@ -8,7 +8,13 @@
     background-color: #7abaff;
 }
 
-.comments-info {
+.comment-creator {
+    border-color: #171a1d;
+    margin: 10px 10px;
+}
+
+.comment-avatar {
+    width: 37px;
 
 }
 

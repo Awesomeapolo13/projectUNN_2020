@@ -513,6 +513,12 @@ export default {
             }
         }
     },
+    //Создание нового поста, после отправления предыдущего
+    createPostAgain() {
+        return {
+            type: constants.CREATE_POST_AGAIN
+        }
+    },
 
     //Получение перечня комментариев к публикации
     fetchComments(commentsIDArray) {
@@ -546,10 +552,60 @@ export default {
         };
     },
 
-    createPostAgain() {
-        return {
-            type: constants.CREATE_POST_AGAIN
+    //Изменение текста комментария
+    createCommentText(value) {
+        if (!value) {
+            return {
+                type: constants.COMMENT_TEXT_INVALID,
+                payload: value,
+            };
+        } else {
+            return {
+                type: constants.COMMENT_INPUT_CHANGE,
+                payload: value,
+            };
         }
-    }
+    },
+
+    //Создание комментария
+    createComment(postID, commentText) {
+        return async (dispatch) => {
+            dispatch({
+                type: constants.COMMENT_TRY_TO_CREATE,
+            });
+            try {
+                console.log('in createComment', postID, commentText);
+                const response = await axios.post(
+                    'http://localhost:3000/comment',
+                    {
+                        userID: localStorage.getItem('userID'),
+                        postID: postID,
+                        commentID: ' ',
+                        text: commentText,
+                    },
+                    {headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}},
+                );
+                if (response.status === 200) {
+                    dispatch({
+                        type: constants.COMMENT_SUCCESS_CREATE,
+                        payload: response.data,
+                    });
+                } else {
+                    dispatch({
+                        type: constants.COMMENT_FAIL_CREATE,
+                        payload: response.data,
+                    });
+                }
+            } catch (e) {
+                console.log(e);
+                dispatch({
+                    type: constants.COMMENT_FAIL_CREATE,
+                    payload: e.message,
+                });
+            }
+        }
+    },
+
+
 
 }

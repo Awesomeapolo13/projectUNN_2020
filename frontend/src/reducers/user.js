@@ -66,10 +66,18 @@ import {
     USER_TRY_TO_CHANGE_INFO,
     USER_SUCCESS_CHANGE_INFO,
     USER_FAIL_CHANGE_INFO,
+
     //Константы комментариев
+    //Получения комментариев к публикации
     GET_COMMENTS_LOADING,
     GET_COMMENTS_SUCCESS,
     GET_COMMENTS_FAIL,
+    //Создание комментария
+    COMMENT_INPUT_CHANGE, // изменение текста комментария
+    COMMENT_TEXT_INVALID, // невалидное значение текста
+    COMMENT_TRY_TO_CREATE,
+    COMMENT_SUCCESS_CREATE,
+    COMMENT_FAIL_CREATE,
 
 } from '../constants';
 
@@ -165,9 +173,17 @@ const initialState = {
     errMsg: '',
 
     //Комментарии
+    //Получение комментариев к публикации
     comments: [],
     isCommentsLoading: false,
     commentsLoadingMessage: '',
+    // Создание окмментария
+    isCommentCreating: false, // индикация отправки комментария
+    isCommentTextInvalid: false, // валидация текста комментария
+    commentText: '', // текст комментария
+    newComment: '', // сообщение сервера при успешном создании комментария
+    failCommentCreateMessage: '', // сообщение сервера при неудавшемся создании комментария
+
 };
 
 export default function userReducer(state = initialState, action) {
@@ -647,7 +663,41 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 commentsLoadingMessage: action.payload,
                 isCommentsLoading: false,
+            };
+            //изменение текста комментария
+        case COMMENT_INPUT_CHANGE:
+            return {
+                ...state,
+                commentText: action.payload,
+                isCommentTextInvalid: false,
+            };
+
+        case COMMENT_TEXT_INVALID:
+            return {
+                ...state,
+                commentText: action.payload,
+                isCommentTextInvalid: true,
+            };
+
+        case COMMENT_TRY_TO_CREATE:
+            return {
+                ...state,
+                isCommentCreating: true,
             }
+
+        case COMMENT_SUCCESS_CREATE:
+            return {
+                ...state,
+                newComment: action.payload,
+                isCommentCreating: false,
+            };
+
+        case COMMENT_FAIL_CREATE:
+            return {
+                ...state,
+                failCommentCreateMessage: action.payload,
+                isCommentCreating: false,
+            };
 
         default:
             return state;

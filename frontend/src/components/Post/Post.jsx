@@ -4,7 +4,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import actions from '../../actions/user';
 import {connect} from 'react-redux';
-import {Container, Media, Button} from 'react-bootstrap';
+import {Container, Media, InputGroup, FormControl, Button, Alert} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import './style.css'
 
@@ -100,10 +100,48 @@ function Post(props) {
                             <p className={'mt-3'}>Автор: <Link
                                 to={'/users/' + props.userID}>
                                 {props.name + ' ' + props.surname}</Link></p>
-                            {props.userID === localStorage.getItem('userID') && <Button>Изменить</Button>}
                             <Button
                                 onClick={() => props.actions.fetchComments(props.commentsIDArray)}>Комментарии</Button>
+                            {props.userID === localStorage.getItem('userID') &&
+                            <Button variant={'warning'}>Изменить</Button>}
+                            {props.userID === localStorage.getItem('userID') &&
+                            <Button variant={'danger'}>Удалить</Button>}
                         </div>
+                        {/*Поле для ввода комментариев*/}
+                        {props.userID === localStorage.getItem('userID') &&
+                        <InputGroup className={'comment-creator'}>
+                            <img src={props.avatar} alt='your avatar' className={'comment-avatar'}/>
+                            <FormControl
+                                placeholder={'Ваш комментарий'}
+                                aria-label={'Ваш комментарий'}
+                                aria-describedby={'basic-addon2'}
+                                onChange={event => {
+                                    props.actions.createCommentText(event.target.value);
+                                }}
+                                onFocus={event => {
+                                    props.actions.createCommentText(event.target.value);
+                                }}
+                                isInvalid={props.isCommentTextInvalid}
+                            />
+                            <InputGroup.Append>
+                                <Button
+                                    variant={'outline-secondary'}
+                                    disabled={props.isCommentTextInvalid || !props.commentText}
+                                    onClick={() => props.actions.createComment(props.postID, props.commentText)}
+                                >Отправить</Button>
+                            </InputGroup.Append>
+                            <FormControl.Feedback type={'invalid'}>
+                                Введите текст комментария
+                            </FormControl.Feedback>
+                        </InputGroup>
+                        }
+                        {props.newComment &&
+                        <Alert variant={'success'}>Комментарий успешно отправлен</Alert>
+                        }
+                        {props.failCommentCreateMessage &&
+                        <Alert variant={'danger'}>{props.failCommentCreateMessage}</Alert>
+                        }
+                        {/*Перечнь комментариев к публикации*/}
                         <div className={'comments-container'}>
                             {
                                 props.comments.map((comment, i) => {
@@ -132,7 +170,6 @@ function Post(props) {
                                     )
                                 })
                             }
-                            <p>Комментарии пользователей к публикации</p>
                         </div>
                     </Media.Body>
                 </Media>

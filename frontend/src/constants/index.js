@@ -56,7 +56,7 @@ export const USER_FAIL_CHANGE_INFO = 'USER_FAIL_CHANGE_INFO';
 export const GET_POSTS_LOADING = 'GET_POSTS_LOADING';
 export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
 export const GET_POSTS_FAIL = 'GET_POSTS_FAIL';
-// создание новой публикации
+// создание публикации
 export const POST_INPUT_TITLE = 'POST_INPUT_TITLE';
 export const POST_TITLE_INVALID = 'POST_TITLE_INVALID';
 export const POST_INPUT_TYPE = 'POST_INPUT_TYPE';
@@ -66,6 +66,12 @@ export const POST_TRY_TO_CREATE = 'POST_TRY_TO_CREATE';
 export const POST_SUCCESS_CREATE = 'POST_SUCCESS_CREATE';
 export const POST_FAIL_CREATE = 'POST_FAIL_CREATE';
 export const CREATE_POST_AGAIN = 'CREATE_POST_AGAIN';
+//создание комментария
+export const COMMENT_INPUT_CHANGE = 'COMMENT_INPUT_CHANGE';
+export const COMMENT_TEXT_INVALID = 'COMMENT_TEXT_INVALID';
+export const COMMENT_TRY_TO_CREATE = 'COMMENT_TRY_TO_CREATE';
+export const COMMENT_SUCCESS_CREATE = 'COMMENT_SUCCESS_CREATE';
+export const COMMENT_FAIL_CREATE = 'COMMENT_FAIL_CREATE';
 //получение перечьня комментариев к публикации
 export const GET_COMMENTS_LOADING = 'GET_COMMENTS_LOADING';
 export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
