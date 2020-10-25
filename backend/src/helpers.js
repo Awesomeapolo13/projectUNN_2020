@@ -58,6 +58,7 @@ export const GetCommentInfo = function (post) {
 export const GetCommentsInfo = function (commentsDataArr) {
     return commentsDataArr.map(comment => {
         return {
+            commentID: comment.commentID,
             postID: comment.postID,
             userID: comment.userID,
             text: comment.text,

@@ -78,6 +78,12 @@ import {
     COMMENT_TRY_TO_CREATE,
     COMMENT_SUCCESS_CREATE,
     COMMENT_FAIL_CREATE,
+    // Изменение комментария
+    OPEN_COMMENT_CHANGER,
+    CLOSE_COMMENT_CHANGER,
+    COMMENT_TRY_TO_CHANGE_INFO,
+    COMMENT_SUCCESS_CHANGE_INFO,
+    COMMENT_FAIL_CHANGE_INFO,
 
 } from '../constants';
 
@@ -164,7 +170,7 @@ const initialState = {
         ['folk', 'Народное творчество'],
         ['baby', 'Детские'],
         ['other', 'Другое'],
-        ]),
+    ]),
 
     personalInfo: {},
     isUsersLoading: false,
@@ -177,13 +183,19 @@ const initialState = {
     comments: [],
     isCommentsLoading: false,
     commentsLoadingMessage: '',
-    // Создание окмментария
+    // Создание комментария
     isCommentCreating: false, // индикация отправки комментария
     isCommentTextInvalid: false, // валидация текста комментария
     commentText: '', // текст комментария
     newComment: '', // сообщение сервера при успешном создании комментария
     failCommentCreateMessage: '', // сообщение сервера при неудавшемся создании комментария
-
+    // Изменение комментария
+    openCommentChanger: false, // открыть редактор комментариев
+    isCommentChanging: false, // индикация изменения комментария
+    commentSuccessChanged: false, // комментарий изменен успешно
+    commentSuccessChangeMessage: '', // сообщение об успешном изменении комментария
+    commentFailChanged: false, // ошибка при изменении комментария
+    commentFailChangeMessage: '', // сообщение об ошибке при изменении комментария
 };
 
 export default function userReducer(state = initialState, action) {
@@ -644,7 +656,7 @@ export default function userReducer(state = initialState, action) {
                 postCreated: false,
             };
 
-            //Получение комментариев к публикации
+        //Получение комментариев к публикации
         case GET_COMMENTS_LOADING:
             return {
                 ...state,
@@ -664,14 +676,14 @@ export default function userReducer(state = initialState, action) {
                 commentsLoadingMessage: action.payload,
                 isCommentsLoading: false,
             };
-            //изменение текста комментария
+        //изменение текста комментария
         case COMMENT_INPUT_CHANGE:
             return {
                 ...state,
                 commentText: action.payload,
                 isCommentTextInvalid: false,
             };
-
+        //Создание комментария
         case COMMENT_TEXT_INVALID:
             return {
                 ...state,
@@ -697,6 +709,48 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 failCommentCreateMessage: action.payload,
                 isCommentCreating: false,
+            };
+        //Изменение комментария
+
+        case OPEN_COMMENT_CHANGER:
+            return {
+                ...state,
+                openCommentChanger: true,
+            };
+
+        case CLOSE_COMMENT_CHANGER:
+            return {
+                ...state,
+                openCommentChanger: false,
+                commentSuccessChanged: false,
+                commentSuccessChangeMessage: '',
+                commentFailChanged: false,
+                commentFailChangeMessage: '',
+            };
+
+        case COMMENT_TRY_TO_CHANGE_INFO:
+            return {
+                ...state,
+                isCommentCreating: true,
+            };
+
+        case COMMENT_SUCCESS_CHANGE_INFO:
+            return {
+                ...state,
+                isCommentCreating: false,
+                commentSuccessChanged: true,
+                commentSuccessChangeMessage: action.payload,
+                commentFailChanged: false,
+                commentFailChangeMessage: '',
+
+            };
+
+        case COMMENT_FAIL_CHANGE_INFO:
+            return {
+                ...state,
+                isCommentCreating: false,
+                commentFailChanged: true,
+                commentFailChangeMessage: action.payload,
             };
 
         default:

@@ -26,15 +26,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95a399b9-7f64-4229-80ea-26df750fe217" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/CommentChanger/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/dist/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/dist/bundle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/dist/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/dist/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/actions/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/actions/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Header/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Header/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Post/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Post/Post.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Post/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Post/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/User.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/User.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserCard/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserCard/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UsersContainer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UsersContainer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UsersList/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UsersList/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/constants/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/constants/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/reducers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/reducers/user.js" afterDir="false" />
     </list>
@@ -45,6 +50,14 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,7 +70,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -70,7 +85,41 @@
       <updated>1600516273688</updated>
       <workItem from="1600516276086" duration="703000" />
       <workItem from="1600516994144" duration="7005000" />
-      <workItem from="1600594640468" duration="8919000" />
+      <workItem from="1600594640468" duration="15837000" />
+      <workItem from="1600700995578" duration="6820000" />
+      <workItem from="1600759130006" duration="8105000" />
+      <workItem from="1600962428267" duration="94000" />
+      <workItem from="1600962588776" duration="6371000" />
+      <workItem from="1601059908789" duration="5229000" />
+      <workItem from="1601108732629" duration="11691000" />
+      <workItem from="1601201418621" duration="2715000" />
+      <workItem from="1601300024641" duration="8925000" />
+      <workItem from="1601485241613" duration="6862000" />
+      <workItem from="1601560029141" duration="1341000" />
+      <workItem from="1601579443439" duration="498000" />
+      <workItem from="1601580065783" duration="42000" />
+      <workItem from="1601652955899" duration="9948000" />
+      <workItem from="1601749900589" duration="3211000" />
+      <workItem from="1601800597044" duration="14370000" />
+      <workItem from="1601881871497" duration="15913000" />
+      <workItem from="1601998718287" duration="8547000" />
+      <workItem from="1602144631896" duration="600000" />
+      <workItem from="1602266997962" duration="6411000" />
+      <workItem from="1602322617225" duration="16529000" />
+      <workItem from="1602416582134" duration="16575000" />
+      <workItem from="1602500315344" duration="6176000" />
+      <workItem from="1602603639326" duration="8453000" />
+      <workItem from="1602769165671" duration="11323000" />
+      <workItem from="1602859808015" duration="5509000" />
+      <workItem from="1602928496569" duration="11281000" />
+      <workItem from="1603030842311" duration="913000" />
+      <workItem from="1603032180516" duration="8185000" />
+      <workItem from="1603112744851" duration="8687000" />
+      <workItem from="1603177555026" duration="7734000" />
+      <workItem from="1603296351965" duration="627000" />
+      <workItem from="1603369800768" duration="5700000" />
+      <workItem from="1603478304822" duration="4716000" />
+      <workItem from="1603620195642" duration="3541000" />
     </task>
     <servers />
   </component>
@@ -112,17 +161,45 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="411" y="164" key="#Notifications" timestamp="1600516974129">
+    <state x="411" y="164" key="#Notifications" timestamp="1601579419884">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="411" y="164" key="#Notifications/0.0.1280.689@0.0.1280.689" timestamp="1600516974129" />
+    <state x="411" y="164" key="#Notifications/0.0.1280.689@0.0.1280.689" timestamp="1601579419884" />
+    <state x="0" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602417713522">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="0" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1602417713522" />
+    <state x="368" y="151" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1603030849969">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="368" y="151" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.689@0.0.1280.689" timestamp="1603030849969" />
+    <state x="377" y="133" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600628693559">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="377" y="133" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.689@0.0.1280.689" timestamp="1600628693559" />
+    <state x="400" y="164" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1601486588538">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="400" y="164" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.689@0.0.1280.689" timestamp="1601486588538" />
     <state x="78" y="111" width="1052" height="450" key="DiffContextDialog" timestamp="1600517532490">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="78" y="111" width="1052" height="450" key="DiffContextDialog/0.0.1280.689@0.0.1280.689" timestamp="1600517532490" />
+    <state x="182" y="0" key="SettingsEditor" timestamp="1601579597864">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="182" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1601579597864" />
+    <state x="90" y="114" key="Vcs.Push.Dialog.v2" timestamp="1601811141436">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="90" y="114" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1601811141436" />
     <state x="422" y="250" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600517024055">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="422" y="250" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689@0.0.1280.689" timestamp="1600517024055" />
+    <state x="469" y="171" key="run.anything.popup" timestamp="1603039280024">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="469" y="171" key="run.anything.popup/0.0.1280.689@0.0.1280.689" timestamp="1603039280024" />
   </component>
 </project>

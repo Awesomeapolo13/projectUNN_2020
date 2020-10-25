@@ -3,7 +3,7 @@
 }
 
 .comment {
-    display: flex;
+
     margin-bottom: 5px;
     background-color: #7abaff;
 }
@@ -16,8 +16,4 @@
 .comment-avatar {
     width: 37px;
 
-}
-
-.comments-container {
-    justify-content: space-between;
 }

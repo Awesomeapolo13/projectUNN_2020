@@ -574,7 +574,7 @@ export default {
                 type: constants.COMMENT_TRY_TO_CREATE,
             });
             try {
-                console.log('in createComment', postID, commentText);
+                // console.log('in createComment', postID, commentText);
                 const response = await axios.post(
                     'http://localhost:3000/comment',
                     {
@@ -606,6 +606,59 @@ export default {
         }
     },
 
+    //Открыть редактор комментария
+    showCommentChanger(boolean) {
+        if (boolean === true) {
+            return {
+                type: constants.OPEN_COMMENT_CHANGER,
+            }
+        }
+
+        if (boolean === false) {
+            return {
+                type: constants.CLOSE_COMMENT_CHANGER,
+            }
+        }
+    },
+
+    //Изменение комментария
+    changeComment(postID, commentID, commentText) {
+        return async (dispatch) => {
+            dispatch({
+                type: constants.COMMENT_TRY_TO_CHANGE_INFO,
+            });
+            try {
+                console.log('in changeComment', postID, commentText, commentID);
+                const response = await axios.put(
+                    'http://localhost:3000/comment',
+                    {
+                        userID: localStorage.getItem('userID'),
+                        postID: postID,
+                        commentID: commentID,
+                        text: commentText,
+                    },
+                    {headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}},
+                );
+                if (response.status === 200) {
+                    dispatch({
+                        type: constants.COMMENT_SUCCESS_CHANGE_INFO,
+                        payload: response.data,
+                    });
+                } else {
+                    dispatch({
+                        type: constants.COMMENT_FAIL_CHANGE_INFO,
+                        payload: response.data,
+                    });
+                }
+            } catch (e) {
+                console.log(e);
+                dispatch({
+                    type: constants.COMMENT_FAIL_CHANGE_INFO,
+                    payload: e.message,
+                });
+            }
+        }
+    },
 
 
 }

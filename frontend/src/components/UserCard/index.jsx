@@ -7,8 +7,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import actions from '../../actions/user';
 
-// import './style.css';
-
 function UserCard(props) {
     function changeUserDateFormat(date) {
         let newFormatDate = new Date(Date.parse(date));
@@ -25,7 +23,7 @@ function UserCard(props) {
     }
     return (
         <>
-            <Card className={'user-card'}>
+            <Card>
                 <div className={'card-avatar'}>
                     <img src={props.avatar} alt='user.avatar'/>
                 </div>

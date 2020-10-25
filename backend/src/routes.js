@@ -217,9 +217,9 @@ export default [
                     video: Joi.string().optional(),
                 })
             },
-            // auth: {
-            //     strategy: 'user'
-            // }
+            auth: {
+                strategy: 'user'
+            }
         }
     },
     {//Получение комментария
