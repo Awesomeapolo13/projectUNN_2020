@@ -11,10 +11,6 @@
     padding: 0;
 }
 
-.menu-cont {
-
-}
-
 .menu {
     /*height: 45px;*/
     display: flex;
@@ -23,17 +19,9 @@
     list-style: none;
 }
 
-.menu span {
-
-}
-
 .exit {
     /*display: flex;*/
     width: min-content;
     justify-content: space-between;
     align-items: center;
-}
-
-.exit button {
-
 }

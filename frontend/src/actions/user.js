@@ -359,7 +359,6 @@ export default {
                         payload: response.data,
                     });
                 } else {
-                    console.log('Не получилось!', response);
                     dispatch({
                         type: constants.USER_FAIL_CHANGE_INFO,
                         payload: response.data,
@@ -490,9 +489,10 @@ export default {
                         type: type,
                         text: text,
                         commentsIDArray: [],
+                        postID: ' ',
                     },
                     {headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}},
-                    );
+                );
                 if (response.status === 200) {
                     dispatch({
                         type: constants.POST_SUCCESS_CREATE,
@@ -512,6 +512,153 @@ export default {
                 });
             }
         }
-    }
+    },
+    //Создание нового поста, после отправления предыдущего
+    createPostAgain() {
+        return {
+            type: constants.CREATE_POST_AGAIN
+        }
+    },
+
+    //Получение перечня комментариев к публикации
+    fetchComments(commentsIDArray) {
+        return async (dispatch) => {
+            dispatch({
+                type: constants.GET_COMMENTS_LOADING,
+            });
+            try {
+                let arr = [];
+                for (let i = 0; i < commentsIDArray.length; i++) {
+                    arr.push(commentsIDArray[i][0]);
+                }
+                console.log('newArr', arr);
+                console.log('ARRAY', commentsIDArray);
+                const responseComments = await axios.get(
+                    'http://localhost:3000/comments',
+                    {params: {commentsIDArray: arr}}
+                );
+                dispatch({
+                    type: constants.GET_COMMENTS_SUCCESS,
+                    payload: responseComments.data,
+                });
+            } catch (e) {
+                console.log(e);
+                dispatch({
+                    type: constants.GET_COMMENTS_FAIL,
+                    payload: e.message,
+                })
+            }
+
+        };
+    },
+
+    //Изменение текста комментария
+    createCommentText(value) {
+        if (!value) {
+            return {
+                type: constants.COMMENT_TEXT_INVALID,
+                payload: value,
+            };
+        } else {
+            return {
+                type: constants.COMMENT_INPUT_CHANGE,
+                payload: value,
+            };
+        }
+    },
+
+    //Создание комментария
+    createComment(postID, commentText) {
+        return async (dispatch) => {
+            dispatch({
+                type: constants.COMMENT_TRY_TO_CREATE,
+            });
+            try {
+                // console.log('in createComment', postID, commentText);
+                const response = await axios.post(
+                    'http://localhost:3000/comment',
+                    {
+                        userID: localStorage.getItem('userID'),
+                        postID: postID,
+                        commentID: ' ',
+                        text: commentText,
+                    },
+                    {headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}},
+                );
+                if (response.status === 200) {
+                    dispatch({
+                        type: constants.COMMENT_SUCCESS_CREATE,
+                        payload: response.data,
+                    });
+                } else {
+                    dispatch({
+                        type: constants.COMMENT_FAIL_CREATE,
+                        payload: response.data,
+                    });
+                }
+            } catch (e) {
+                console.log(e);
+                dispatch({
+                    type: constants.COMMENT_FAIL_CREATE,
+                    payload: e.message,
+                });
+            }
+        }
+    },
+
+    //Открыть редактор комментария
+    showCommentChanger(boolean) {
+        if (boolean === true) {
+            return {
+                type: constants.OPEN_COMMENT_CHANGER,
+            }
+        }
+
+        if (boolean === false) {
+            return {
+                type: constants.CLOSE_COMMENT_CHANGER,
+            }
+        }
+    },
+
+    //Изменение комментария
+    changeComment(postID, commentID, commentText) {
+        return async (dispatch) => {
+            dispatch({
+                type: constants.COMMENT_TRY_TO_CHANGE_INFO,
+            });
+            try {
+                console.log('in changeComment', postID, commentText, commentID);
+                const response = await axios.put(
+                    'http://localhost:3000/comment',
+                    {
+                        userID: localStorage.getItem('userID'),
+                        postID: postID,
+                        commentID: commentID,
+                        text: commentText,
+                    },
+                    {headers: {'Authorization': `Bearer ${localStorage.getItem('token')}`}},
+                );
+                if (response.status === 200) {
+                    dispatch({
+                        type: constants.COMMENT_SUCCESS_CHANGE_INFO,
+                        payload: response.data,
+                    });
+                } else {
+                    dispatch({
+                        type: constants.COMMENT_FAIL_CHANGE_INFO,
+                        payload: response.data,
+                    });
+                }
+            } catch (e) {
+                console.log(e);
+                dispatch({
+                    type: constants.COMMENT_FAIL_CHANGE_INFO,
+                    payload: e.message,
+                });
+            }
+        }
+    },
+
 
 }

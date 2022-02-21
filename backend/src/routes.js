@@ -151,9 +151,6 @@ export default [
         path: '/post',
         handler: controllers.getPostInformation,
         options: {
-            // auth: {
-            //     strategies: ['admin', 'user']
-            //     }
         }
     },
     {//Получение перечня постов
@@ -161,9 +158,6 @@ export default [
         path: '/post/list',
         handler: controllers.getPostsList,
         options: {
-            // auth: {
-            //     strategies: ['admin', 'user']
-            // },
             cors: {
                 origin: ['*']
             }
@@ -223,9 +217,9 @@ export default [
                     video: Joi.string().optional(),
                 })
             },
-            // auth: {
-            //     strategy: 'user'
-            // }
+            auth: {
+                strategy: 'user'
+            }
         }
     },
     {//Получение комментария
@@ -233,11 +227,16 @@ export default [
         path: '/comment',
         handler: controllers.getComment,
         options: {
-            auth: {
-                strategies: ['admin', 'user']
-            }
         }
     },
+
+    //Получение перечьня комментариев к публикации
+    {
+      method: 'GET',
+      path: '/comments',
+      handler: controllers.getCommentsList,
+    },
+
     {//Редактирование комментария
         method: 'PUT',
         path: '/comment',

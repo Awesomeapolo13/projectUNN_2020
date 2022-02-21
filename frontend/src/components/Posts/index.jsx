@@ -64,19 +64,19 @@ function Posts(props) {
             {/*                   }*/}
             {/*                return (*/}
 
-            {/*                    <li key={post.postID}>*/}
-            {/*                        <div className={'postsInfo'}>*/}
-            {/*                            <div className={'avatar'}>*/}
-            {/*                                <img src={post.avatar} alt='user.avatar'/>*/}
-            {/*                            </div>*/}
-            {/*                            <div className={'user'}>*/}
-            {/*                                <span>{post.name + ' ' + post.surname}</span>*/}
-            {/*                                <h3>{post.tittle}</h3>*/}
-            {/*                                <Link to={'/posts/' + post.postID}>Перейти к публикации</Link>*/}
-            {/*                                <p>{post.text}</p>*/}
-            {/*                            </div>*/}
-            {/*                        </div>*/}
-            {/*                    </li>*/}
+                                {/*<li key={post.postID}>*/}
+                                {/*    <div className={'postsInfo'}>*/}
+                                {/*        <div className={'avatar'}>*/}
+                                {/*            <img src={post.avatar} alt='user.avatar'/>*/}
+                                {/*        </div>*/}
+                                {/*        <div className={'user'}>*/}
+                                {/*            <span>{post.name + ' ' + post.surname}</span>*/}
+                                {/*            <h3>{post.tittle}</h3>*/}
+                                {/*            <Link to={'/posts/' + post.postID}>Перейти к публикации</Link>*/}
+                                {/*            <p>{post.text}</p>*/}
+                                {/*        </div>*/}
+                                {/*    </div>*/}
+                                {/*</li>*/}
             {/*                );*/}
             {/*            })*/}
             {/*        }*/}

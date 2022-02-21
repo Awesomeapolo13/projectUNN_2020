@@ -13,7 +13,7 @@ function UsersList(props) {
         let newFormatDate = new Date(Date.parse(date));
         if (newFormatDate.getMonth() + 1 <= 9 && newFormatDate.getDate() <= 9) { // если месяц и день от 1 до 9
             newFormatDate = `0${newFormatDate.getDate()}.0${newFormatDate.getMonth() + 1}.${newFormatDate.getFullYear()}`;
-        } else if(newFormatDate.getMonth() + 1 <= 9) { // если месяц от 1 до 9
+        } else if (newFormatDate.getMonth() + 1 <= 9) { // если месяц от 1 до 9
             newFormatDate = `${newFormatDate.getDate()}.0${newFormatDate.getMonth() + 1}.${newFormatDate.getFullYear()}`;
         } else if (newFormatDate.getDate() <= 9) { // если день от 1 до 9
             newFormatDate = `0${newFormatDate.getDate()}.${newFormatDate.getMonth() + 1}.${newFormatDate.getFullYear()}`;
@@ -52,39 +52,11 @@ function UsersList(props) {
                                         <p>Телефон: {user.contactPhone}</p>
                                     </Media.Body>
                                 </Media>
-
-                        )
+                            )
                         })
                     }
                 </CardDeck>
             </Container>
-
-            {/*<div>*/}
-
-
-            {/*    <ul>*/}
-            {/*        {*/}
-            {/*            props.users.map(user => {*/}
-            {/*                return (*/}
-            {/*                    <li key={user.userID}>*/}
-            {/*                        <div className={'usersInfo'}>*/}
-            {/*                            <div className={'avatar'}>*/}
-            {/*                                <img src={user.avatar} alt='user.avatar'/>*/}
-            {/*                            </div>*/}
-            {/*                            <div className={'user'}>*/}
-            {/*                                <span>{user.name + ' ' + user.surname}</span>*/}
-            {/*                                <Link to={'/users/' + user.userID}>Перейти в профиль</Link>*/}
-            {/*                                <span>Birthday: {user.birthDate}</span>*/}
-            {/*                                <span>Email: {user.email}</span>*/}
-            {/*                            </div>*/}
-            {/*                        </div>*/}
-            {/*                    </li>*/}
-            {/*                );*/}
-            {/*            })*/}
-            {/*        }*/}
-            {/*    </ul>*/}
-
-            {/*</div>*/}
         </>
     )
 }

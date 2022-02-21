@@ -16,6 +16,10 @@ ul {
     padding: 0;
 }
 
+li {
+    list-style-type: none;
+}
+
 .page {
     display: flex;
     flex-direction: column;
@@ -31,4 +35,8 @@ ul {
 
 .about-us-img {
     width: 650px;
+}
+
+.user-card {
+    margin-top: 60px;
 }

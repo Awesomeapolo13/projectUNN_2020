@@ -57,6 +57,7 @@ import {
     POST_TRY_TO_CREATE,
     POST_SUCCESS_CREATE,
     POST_FAIL_CREATE,
+    CREATE_POST_AGAIN,
 
     USER_TRY_TO_REGISTER,
     USER_SUCCESS_REGISTER,
@@ -65,6 +66,24 @@ import {
     USER_TRY_TO_CHANGE_INFO,
     USER_SUCCESS_CHANGE_INFO,
     USER_FAIL_CHANGE_INFO,
+
+    //Константы комментариев
+    //Получения комментариев к публикации
+    GET_COMMENTS_LOADING,
+    GET_COMMENTS_SUCCESS,
+    GET_COMMENTS_FAIL,
+    //Создание комментария
+    COMMENT_INPUT_CHANGE, // изменение текста комментария
+    COMMENT_TEXT_INVALID, // невалидное значение текста
+    COMMENT_TRY_TO_CREATE,
+    COMMENT_SUCCESS_CREATE,
+    COMMENT_FAIL_CREATE,
+    // Изменение комментария
+    OPEN_COMMENT_CHANGER,
+    CLOSE_COMMENT_CHANGER,
+    COMMENT_TRY_TO_CHANGE_INFO,
+    COMMENT_SUCCESS_CHANGE_INFO,
+    COMMENT_FAIL_CHANGE_INFO,
 
 } from '../constants';
 
@@ -75,7 +94,6 @@ const initialState = {
     isLoggedIn: false,
     userRegister: false,
     activePageId: 0,
-    token: '',
     newFormatData: '',
     pages: [
         {pageId: 0, name: 'Главная', path: '/'},
@@ -133,17 +151,51 @@ const initialState = {
     posts: [],
     changePostMessage: '',
     isPostCreating: false,
+    postCreated: false,
     postText: '',
     isPostTextInvalid: false,
     postTitle: '',
     isPostTitleInvalid: false,
     postType: '',
+    postTypes: new Map([
+        ['weather', 'Погода'],
+        ['love', 'Любовь'],
+        ['sadness', 'Грусть'],
+        ['sport', 'Спорт'],
+        ['religion', 'Вера'],
+        ['holiday', 'Праздничные'],
+        ['army', 'Армейские'],
+        ['nature', 'Природа'],
+        ['life', 'Жизнь'],
+        ['folk', 'Народное творчество'],
+        ['baby', 'Детские'],
+        ['other', 'Другое'],
+    ]),
 
     personalInfo: {},
     isUsersLoading: false,
     isPostsLoading: false,
     isRegistrationLoading: false,
     errMsg: '',
+
+    //Комментарии
+    //Получение комментариев к публикации
+    comments: [],
+    isCommentsLoading: false,
+    commentsLoadingMessage: '',
+    // Создание комментария
+    isCommentCreating: false, // индикация отправки комментария
+    isCommentTextInvalid: false, // валидация текста комментария
+    commentText: '', // текст комментария
+    newComment: '', // сообщение сервера при успешном создании комментария
+    failCommentCreateMessage: '', // сообщение сервера при неудавшемся создании комментария
+    // Изменение комментария
+    openCommentChanger: false, // открыть редактор комментариев
+    isCommentChanging: false, // индикация изменения комментария
+    commentSuccessChanged: false, // комментарий изменен успешно
+    commentSuccessChangeMessage: '', // сообщение об успешном изменении комментария
+    commentFailChanged: false, // ошибка при изменении комментария
+    commentFailChangeMessage: '', // сообщение об ошибке при изменении комментария
 };
 
 export default function userReducer(state = initialState, action) {
@@ -445,7 +497,7 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 errMsg: action.payload,
                 isRegistered: false,
-            }
+            };
 
 //Вход
 
@@ -587,7 +639,8 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 changePostMessage: action.payload,
-                isPostCreating: false
+                isPostCreating: false,
+                postCreated: true,
             };
 
         case POST_FAIL_CREATE:
@@ -595,7 +648,110 @@ export default function userReducer(state = initialState, action) {
                 ...state,
                 changePostMessage: action.payload,
                 isPostCreating: false
+            };
+
+        case CREATE_POST_AGAIN:
+            return {
+                ...state,
+                postCreated: false,
+            };
+
+        //Получение комментариев к публикации
+        case GET_COMMENTS_LOADING:
+            return {
+                ...state,
+                isCommentsLoading: true,
+            };
+
+        case GET_COMMENTS_SUCCESS:
+            return {
+                ...state,
+                comments: action.payload,
+                isCommentsLoading: false,
+            };
+
+        case GET_COMMENTS_FAIL:
+            return {
+                ...state,
+                commentsLoadingMessage: action.payload,
+                isCommentsLoading: false,
+            };
+        //изменение текста комментария
+        case COMMENT_INPUT_CHANGE:
+            return {
+                ...state,
+                commentText: action.payload,
+                isCommentTextInvalid: false,
+            };
+        //Создание комментария
+        case COMMENT_TEXT_INVALID:
+            return {
+                ...state,
+                commentText: action.payload,
+                isCommentTextInvalid: true,
+            };
+
+        case COMMENT_TRY_TO_CREATE:
+            return {
+                ...state,
+                isCommentCreating: true,
             }
+
+        case COMMENT_SUCCESS_CREATE:
+            return {
+                ...state,
+                newComment: action.payload,
+                isCommentCreating: false,
+            };
+
+        case COMMENT_FAIL_CREATE:
+            return {
+                ...state,
+                failCommentCreateMessage: action.payload,
+                isCommentCreating: false,
+            };
+        //Изменение комментария
+
+        case OPEN_COMMENT_CHANGER:
+            return {
+                ...state,
+                openCommentChanger: true,
+            };
+
+        case CLOSE_COMMENT_CHANGER:
+            return {
+                ...state,
+                openCommentChanger: false,
+                commentSuccessChanged: false,
+                commentSuccessChangeMessage: '',
+                commentFailChanged: false,
+                commentFailChangeMessage: '',
+            };
+
+        case COMMENT_TRY_TO_CHANGE_INFO:
+            return {
+                ...state,
+                isCommentCreating: true,
+            };
+
+        case COMMENT_SUCCESS_CHANGE_INFO:
+            return {
+                ...state,
+                isCommentCreating: false,
+                commentSuccessChanged: true,
+                commentSuccessChangeMessage: action.payload,
+                commentFailChanged: false,
+                commentFailChangeMessage: '',
+
+            };
+
+        case COMMENT_FAIL_CHANGE_INFO:
+            return {
+                ...state,
+                isCommentCreating: false,
+                commentFailChanged: true,
+                commentFailChangeMessage: action.payload,
+            };
 
         default:
             return state;

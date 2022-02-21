@@ -10,7 +10,6 @@ import actions from '../../actions/user';
 class Registration extends React.Component {
     constructor(props) {
         super(props);
-        console.log('constructor');
     }
 
     render() {

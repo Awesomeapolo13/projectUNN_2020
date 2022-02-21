@@ -38,7 +38,7 @@ class UsersContainer extends React.Component {
                         exact
                         render={(props) => {
                             const id = props.match.params.userId;
-                            console.log(id);
+                            // console.log(id);
                             const selectedUser = this.props.users.find(user => user.userID === id);
                             if (selectedUser) {
                                 return <User {...selectedUser} />;
